@@ -34,3 +34,13 @@ set clipboard=unnamed                       " use system clipboard
 set exrc                                    " enable usage of additional .vimrc files from working directory
 set secure                                  " prohibit .vimrc files to execute shell, create files, etc...
 
+
+
+
+inoremap gg <Home>
+noremap gb G
+noremap gf l
+noremap <space> <PageDown>
+noremap q <PageUp>
+noremap <CR> gg 
+
