@@ -42,5 +42,14 @@ noremap gb G
 noremap gf l
 noremap <space> <PageDown>
 noremap q <PageUp>
-noremap <CR> gg 
 
+noremap gs ^
+noremap ge $
+noremap ; :
+inoremap <a-k> <Up>
+inoremap <a-j> <Down>
+inoremap <a-h> <Left>
+inoremap <a-l> <Right>
+noremap z i
+noremap gc gm
+noremap n )
