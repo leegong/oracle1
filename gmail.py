@@ -1,38 +1,45 @@
+# Python 3.8
+import smtplib
+import time
 import imaplib
 import email
+import traceback 
+# -------------------------------------------------
+#
+# Utility to read email from Gmail Using Python
+#
+# ------------------------------------------------
+ORG_EMAIL = "@gmail.com" 
+FROM_EMAIL = "lgustb" + ORG_EMAIL 
+FROM_PWD = "Leegong7030@!" 
+SMTP_SERVER = "imap.gmail.com" 
+SMTP_PORT = 993
 
-host = 'imap.gmail.com'
-username = 'lgustb@gmail.com'
-password = 'Leegong7030@!'
+def read_email_from_gmail():
+    try:
+        mail = imaplib.IMAP4_SSL(SMTP_SERVER)
+        mail.login(FROM_EMAIL,FROM_PWD)
+        mail.select('inbox')
 
+        data = mail.search(None, 'ALL')
+        mail_ids = data[1]
+        id_list = mail_ids[0].split()   
+        first_email_id = int(id_list[0])
+        latest_email_id = int(id_list[-1])
 
-def get_inbox():
-    mail = imaplib.IMAP4_SSL(host)
-    mail.login(username, password)
-    mail.select("inbox")
-    _, search_data = mail.search(None, 'UNSEEN')
-    my_message = []
-    for num in search_data[0].split():
-        email_data = {}
-        _, data = mail.fetch(num, '(RFC822)')
-        # print(data[0])
-        _, b = data[0]
-        email_message = email.message_from_bytes(b)
-        for header in ['subject', 'to', 'from', 'date']:
-            print("{}: {}".format(header, email_message[header]))
-            email_data[header] = email_message[header]
-        for part in email_message.walk():
-            if part.get_content_type() == "text/plain":
-                body = part.get_payload(decode=True)
-                email_data['body'] = body.decode()
-            elif part.get_content_type() == "text/html":
-                html_body = part.get_payload(decode=True)
-                email_data['html_body'] = html_body.decode()
-        my_message.append(email_data)
-    return my_message
+        for i in range(latest_email_id,first_email_id, -1):
+            data = mail.fetch(str(i), '(RFC822)' )
+            for response_part in data:
+                arr = response_part[0]
+                if isinstance(arr, tuple):
+                    msg = email.message_from_string(str(arr[1],'utf-8'))
+                    email_subject = msg['subject']
+                    email_from = msg['from']
+                    print('From : ' + email_from + '\n')
+                    print('Subject : ' + email_subject + '\n')
 
+    except Exception as e:
+        traceback.print_exc() 
+        print(str(e))
 
-if __name__ == "__main__":
-    my_inbox = get_inbox()
-    print(my_inbox)
-# print(search_data)
+read_email_from_gmail()
