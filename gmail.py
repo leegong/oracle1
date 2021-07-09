@@ -3,7 +3,7 @@ import email
 
 host = 'imap.gmail.com'
 username = 'lgustb@gmail.com'
-password = '<Leegong7030@!>'
+password = 'Leegong7030@!'
 
 
 def get_inbox():
