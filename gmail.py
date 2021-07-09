@@ -9,7 +9,7 @@ import traceback
 # Utility to read email from Gmail Using Python
 #
 # ------------------------------------------------
-ORG_EMAIL = "@hotmail.com" 
+ORG_EMAIL = "@gmail.com" 
 FROM_EMAIL = "lgustb" + ORG_EMAIL 
 FROM_PWD = "Leegong7030@!" 
 SMTP_SERVER = "imap.gmail.com" 
