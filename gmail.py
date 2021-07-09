@@ -10,9 +10,9 @@ import traceback
 #
 # ------------------------------------------------
 ORG_EMAIL = "@hotmail.com" 
-FROM_EMAIL = "leegongwong" + ORG_EMAIL 
-FROM_PWD = "Leegong7030@!!!" 
-SMTP_SERVER = "imap.hotmail.com" 
+FROM_EMAIL = "lgustb" + ORG_EMAIL 
+FROM_PWD = "Leegong7030@!" 
+SMTP_SERVER = "imap.gmail.com" 
 SMTP_PORT = 993
 
 def read_email_from_gmail():
