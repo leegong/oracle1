@@ -25,9 +25,8 @@ set rtp+=$vundle
    
 
     "-------------------=== Other ===-------------------------------
-    Plugin 'bling/vim-airline'                  " Lean & mean status/tabline for vim
     
-    Plugin 'flazz/vim-colorschemes'             " Colorschemes
+    
 
     "-------------------=== Snippets support ===--------------------
     
